@@ -32,9 +32,8 @@ namespace DemoApp.Staff.Navigation
 
 			if (nodeParentMap != null && String.IsNullOrEmpty(nodeParentMap.Node.UrlResolver))
 			{
-				// extract token from type
-				string controllerName = type.Name.Substring(0, type.Name.LastIndexOf("Controller"));
-				string token = MvcCodeRoutingUtils.GetRouteContextToken(type.Namespace, controllerName);
+				// extract token from the controller type
+				string token = MvcCodeRoutingUtils.GetRouteContextToken(type);
 
 				// save token to the node
 				nodeParentMap.Node.Attributes.Add(MvcCodeRoutingUtils.ROUTE_CONTEXT_TOKEN_KEY, token);

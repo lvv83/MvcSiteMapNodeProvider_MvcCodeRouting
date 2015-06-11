@@ -6,8 +6,11 @@ namespace DemoApp.Staff.Navigation
 	{
 		internal const string ROUTE_CONTEXT_TOKEN_KEY = "MvcCodeRouting.RouteContext";
 
-		internal static string GetRouteContextToken(string controllerNamespace, string controllerName)
+		internal static string GetRouteContextToken(Type controllerType)
 		{
+			string controllerName = controllerType.Name.Substring(0, controllerType.Name.LastIndexOf("Controller"));
+			string controllerNamespace = controllerType.Namespace;
+
 			int controllersIndex = controllerNamespace.LastIndexOf(".Controllers.");
 			if (controllersIndex == -1)
 			{
