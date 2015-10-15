@@ -41,6 +41,7 @@ namespace DemoApp.DI.SimpleInjector
 			var allAssemblies = new Assembly[] { currentAssembly, siteMapProviderAssembly };
 			var excludeTypes = new Type[]
 			{
+				typeof(IMvcContextFactory),
 				// xml not supported yet
 				typeof(MvcSiteMapProvider.Xml.ISiteMapXmlValidator),
 				typeof(MvcSiteMapProvider.Xml.ISiteMapXmlNameProvider),
@@ -73,8 +74,7 @@ namespace DemoApp.DI.SimpleInjector
 			// xml not supported yet
 			//container.RegisterMvcController<XmlSiteMapController>();
 
-			// this line throws an exception. (An exception of type 'System.InvalidOperationException'... Type IMvcContextFactory has already been registered.)
-			//container.Register<IMvcContextFactory, MvcContextFactory>(Lifestyle.Singleton);
+			container.Register<IMvcContextFactory, MvcContextFactory>(Lifestyle.Singleton);
 
 // Visibility Providers
 			container.Register<ISiteMapNodeVisibilityProviderStrategy>(() =>
